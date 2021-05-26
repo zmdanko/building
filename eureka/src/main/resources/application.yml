@@ -1,0 +1,6 @@
+server:
+  port: ${port:8761}
+  spring:
+    application:
+      #Eureka中的服务名
+      name: eureka-server
