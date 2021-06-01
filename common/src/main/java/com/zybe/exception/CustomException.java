@@ -4,10 +4,10 @@ import com.zybe.customEnum.ReturnEnum;
 import lombok.Getter;
 
 @Getter
-public class ArgsException extends RuntimeException{
+public class CustomException extends RuntimeException{
     private int code;
 
-    public ArgsException(ReturnEnum returnEnum){
+    public CustomException(ReturnEnum returnEnum){
         super(returnEnum.getMessage());
         this.code= returnEnum.getCode();
     }

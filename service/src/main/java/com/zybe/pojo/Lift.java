@@ -19,7 +19,7 @@ public class Lift {
     @NotNull
     private Float tilt;
     @NotNull
-    private int direction;
+    private Integer direction;
     @NotNull
     private Float rated_weight;
     @NotNull
@@ -27,8 +27,8 @@ public class Lift {
     @NotNull
     private Float rated_speed;
     @NotNull
-    private int door;
+    private Integer door;
     @NotNull
-    private int state;
+    private Integer state;
     private Float windspeed;
 }

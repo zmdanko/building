@@ -10,6 +10,8 @@ spring:
           uri: lb://service
           predicates:
             - Path=/api/**
+          filters:
+            - AddRequestHeader=auth, gateway
       globalcors:
         cors-configurations:
           '[/**]':

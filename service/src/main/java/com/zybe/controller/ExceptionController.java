@@ -1,7 +1,6 @@
 package com.zybe.controller;
 
 import com.zybe.pojo.ReturnData;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

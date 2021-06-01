@@ -1,7 +1,7 @@
 package com.zybe.filter;
 
 import com.zybe.customEnum.ReturnEnum;
-import com.zybe.exception.ArgsException;
+import com.zybe.exception.CustomException;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -49,15 +49,15 @@ public class ArgsFilter implements GlobalFilter, Ordered {
                 case "":
                     break;
                 case "appid":
-                    throw new ArgsException(ReturnEnum.NO_APPID);
+                    throw new CustomException(ReturnEnum.NO_APPID);
                 case "timestamp":
-                    throw new ArgsException(ReturnEnum.NO_TIMESTAMP);
+                    throw new CustomException(ReturnEnum.NO_TIMESTAMP);
                 case "msgid":
-                    throw new ArgsException(ReturnEnum.NO_MSGID);
+                    throw new CustomException(ReturnEnum.NO_MSGID);
                 case "signature":
-                    throw new ArgsException(ReturnEnum.NO_SIGNATURE);
+                    throw new CustomException(ReturnEnum.NO_SIGNATURE);
                 case "version":
-                    throw new ArgsException(ReturnEnum.NO_VERSION);
+                    throw new CustomException(ReturnEnum.NO_VERSION);
             }
 
             String appid = exchange.getRequest().getQueryParams().getFirst("appid");
@@ -65,21 +65,21 @@ public class ArgsFilter implements GlobalFilter, Ordered {
             ArrayList<String> ids = new ArrayList<>();
             ids.add(APPID);
             if (!ids.contains(appid)) {
-                throw new ArgsException(ReturnEnum.ILLEGAL_APPID);
+                throw new CustomException(ReturnEnum.ILLEGAL_APPID);
             }
 
             ArrayList<String> forbiddenIDs = new ArrayList<>();
             if (forbiddenIDs.contains(appid)) {
-                throw new ArgsException(ReturnEnum.FORBIDDEN_APPID);
+                throw new CustomException(ReturnEnum.FORBIDDEN_APPID);
             }
             if ((exchange.getRequest().getCookies().getFirst("secret") == null) || !(exchange.getRequest().getCookies().getFirst("secret").getValue().equals(SECRET))) {
-                throw new ArgsException(ReturnEnum.SECRET_EXCEPTION);
+                throw new CustomException(ReturnEnum.SECRET_EXCEPTION);
             }
 
             map.put("secret", exchange.getRequest().getCookies().getFirst("secret").getValue());
 
             VerifySignature(map);
-        } catch (ArgsException e) {
+        } catch (CustomException e) {
             ServerHttpRequest request = null;
             try {
                 request = exchange.getRequest().mutate().path("/exception").method(HttpMethod.GET).header("code", e.getCode() + "").header("message", URLEncoder.encode(e.getMessage(), "utf-8")).build();
@@ -87,7 +87,7 @@ public class ArgsFilter implements GlobalFilter, Ordered {
                 ex.printStackTrace();
             }
             exchange = exchange.mutate().request(request).build();
-        }  catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
@@ -97,10 +97,12 @@ public class ArgsFilter implements GlobalFilter, Ordered {
     private void VerifySignature(HashMap<String, String> map) throws UnsupportedEncodingException {
         String userMD5 = DigestUtils.md5DigestAsHex((map.get("appid") + map.get("msgid") + map.get("timestamp") + map.get("secret")).getBytes("utf-8"));
 
+        System.out.println("signature:  " + userMD5);
+
         String localMD5 = DigestUtils.md5DigestAsHex((APPID + map.get("msgid") + map.get("timestamp") + SECRET).getBytes("utf-8"));
 
-        if (userMD5 != localMD5) {
-            throw new ArgsException(ReturnEnum.ERROR_SIGNATURE);
+        if (!localMD5.equals(userMD5)) {
+            throw new CustomException(ReturnEnum.ERROR_SIGNATURE);
         }
     }
 

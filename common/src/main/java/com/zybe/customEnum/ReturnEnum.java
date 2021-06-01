@@ -16,7 +16,8 @@ public enum ReturnEnum {
     ILLEGAL_APPID(-10006,"appid不合法"),
     FORBIDDEN_APPID(-10007, "appid已禁用"),
     SECRET_EXCEPTION(-10008,"secret出现异常请联系管理员"),
-    ERROR_SIGNATURE(-10009,"signature 签名验证错误，请联系管理员");
+    ERROR_SIGNATURE(-10009,"signature 签名验证错误，请联系管理员"),
+    Auth_ERROR (401,"请从gateway访问服务");
 
     private int code;
     private String message;

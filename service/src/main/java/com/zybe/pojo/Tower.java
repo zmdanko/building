@@ -2,7 +2,9 @@ package com.zybe.pojo;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
 
 @Data
 public class Tower {
@@ -35,5 +37,5 @@ public class Tower {
     @NotNull
     private Float rated_torque;
     @NotNull
-    private int state;
+    private Integer state;
 }

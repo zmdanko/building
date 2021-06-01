@@ -1,6 +1,6 @@
 package com.zybe.advice;
 
-import com.zybe.exception.ArgsException;
+import com.zybe.exception.CustomException;
 import com.zybe.pojo.ReturnData;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -12,8 +12,8 @@ import java.util.List;
 
 @ControllerAdvice
 public class ExceptionHandler {
-    @org.springframework.web.bind.annotation.ExceptionHandler(ArgsException.class)
-    private ResponseEntity<String> exceptionHandler(ArgsException e) {
+    @org.springframework.web.bind.annotation.ExceptionHandler(CustomException.class)
+    private ResponseEntity<String> exceptionHandler(CustomException e) {
         return ResponseEntity.status(e.getCode()).body(e.getMessage());
     }
 
@@ -26,8 +26,5 @@ public class ExceptionHandler {
             message += fieldError.getField() + objectError.getDefaultMessage() + "|";
         }
         return ResponseEntity.badRequest().body(new ReturnData(400,message));
-
     }
-
-
 }
