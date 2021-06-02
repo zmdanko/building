@@ -4,3 +4,6 @@ server:
     application:
       #Eureka中的服务名
       name: eureka-server
+eureka:
+  client:
+    register-with-eureka: ${register:false}
