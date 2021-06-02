@@ -2,10 +2,11 @@ package com.zybe.pojo;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Column;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
+@Table(name = "[tower]")
 @Data
 public class Tower {
     @NotNull
@@ -21,6 +22,7 @@ public class Tower {
     @NotNull
     private Float rotate;
     @NotNull
+    @Column(name = "[windSpeed]")
     private Float windSpeed;
     @NotNull
     private Float oblique;

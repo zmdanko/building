@@ -22,12 +22,6 @@ import java.util.HashMap;
 
 @Configuration
 public class ArgsFilter implements GlobalFilter, Ordered {
-    private final ObjectProvider<DispatcherHandler> dispatcherHandler;
-
-    public ArgsFilter(ObjectProvider<DispatcherHandler> dispatcherHandler) {
-        this.dispatcherHandler = dispatcherHandler;
-    }
-
     private static String APPID = "1";
     private static String SECRET = "4";
 

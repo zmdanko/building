@@ -2,8 +2,10 @@ package com.zybe.pojo;
 
 import lombok.Data;
 
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@Table(name = "[lift]")
 @Data
 public class Lift {
     @NotNull

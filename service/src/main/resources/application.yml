@@ -3,5 +3,16 @@ server:
 spring:
   application:
     name: service
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;database=Building;serverTimezone=GMT+8
+    username: root
+    password: root
+mybatis:
+  type-aliases-package: com.zybe.pojo
+  mapper-locations:
+    - classpath:/*.xml
+mapper:
+  wrap-keyword: "[{0}]"
 properties:
   auth: gateway
