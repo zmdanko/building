@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "[lift]")
+@Table(name = "`lift`")
 @Data
 public class Lift {
     @NotNull
