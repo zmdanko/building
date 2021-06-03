@@ -1,9 +1,8 @@
-CREATE DATABASE `Building`;
+CREATE DATABASE `building`;
 
-USE `Building`;
+USE `building`;
 
 CREATE TABLE `lift`(
-	`id` NUMERIC(18,0) PRIMARY KEY AUTO_INCREMENT,
 	`device_sn` NVARCHAR(10),
 	`localetime` NVARCHAR(10),
 	`weight` DECIMAL(10,3),
@@ -20,7 +19,6 @@ CREATE TABLE `lift`(
 	);
 
 	CREATE TABLE `tower`(
-	`id` NUMERIC(18,0) PRIMARY KEY IDENTITY(1,1),
 	`device_sn` NVARCHAR(10),
 	`localetime` NVARCHAR(10),
 	`height` DECIMAL(10,3),
