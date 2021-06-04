@@ -4,15 +4,16 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "`tower`")
 @Data
 public class Tower {
-    @NotNull
+    @NotBlank
     private String device_sn;
-    @NotNull
-    private String localetime;
+    @NotBlank
+    private String locale_time;
     @NotNull
     private Float height;
     @NotNull
@@ -22,8 +23,7 @@ public class Tower {
     @NotNull
     private Float rotate;
     @NotNull
-    @Column(name = "`windSpeed`")
-    private Float windSpeed;
+    private Float wind_speed;
     @NotNull
     private Float oblique;
     @NotNull

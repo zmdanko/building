@@ -3,15 +3,16 @@ package com.zybe.pojo;
 import lombok.Data;
 
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "`lift`")
 @Data
 public class Lift {
-    @NotNull
+    @NotBlank
     private String device_sn;
-    @NotNull
-    private String localetime;
+    @NotBlank
+    private String locale_time;
     @NotNull
     private Float weight;
     @NotNull
@@ -32,5 +33,5 @@ public class Lift {
     private Integer door;
     @NotNull
     private Integer state;
-    private Float windspeed;
+    private Float wind_speed;
 }

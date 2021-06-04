@@ -5,7 +5,7 @@ USE `building`;
 CREATE TABLE `lift`(
 	`id` INT AUTO_INCREMENT,
 	`device_sn` NVARCHAR(10),
-	`localetime` NVARCHAR(20),
+	`locale_time` NVARCHAR(20),
 	`weight` DECIMAL(10,6),
 	`height` DECIMAL(10,6),
 	`speed` DECIMAL(10,6),
@@ -16,19 +16,19 @@ CREATE TABLE `lift`(
 	`rated_speed` DECIMAL(10,6),
 	`door` INT,
 	`state` INT,
-	`windspeed` DECIMAL(10,6),
+	`wind_speed` DECIMAL(10,6),
 	PRIMARY KEY(`id`)
-	);
+	)DEFAULT CHARSET=utf8;
 
 	CREATE TABLE `tower`(
 	`id` INT AUTO_INCREMENT,
 	`device_sn` NVARCHAR(10),
-	`localetime` NVARCHAR(20),
+	`locale_time` NVARCHAR(20),
 	`height` DECIMAL(10,6),
 	`weight` DECIMAL(10,6),
 	`scope` DECIMAL(10,6),
 	`rotate` DECIMAL(10,6),
-	`windSpeed` DECIMAL(10,6),
+	`wind_speed` DECIMAL(10,6),
 	`oblique` DECIMAL(10,6),
 	`torque` DECIMAL(10,6),
 	`cargo_boom` DECIMAL(10,6),
@@ -38,4 +38,4 @@ CREATE TABLE `lift`(
 	`rated_torque` DECIMAL(10,6),
 	`state` INT,
 	PRIMARY KEY(`id`)
-	);
+	)DEFAULT CHARSET=utf8;
